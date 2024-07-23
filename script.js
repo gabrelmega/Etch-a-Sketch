@@ -1,6 +1,5 @@
 const board = document.querySelector("#board");
 const resetButton = document.querySelector("#btnReset");
-const modeButtons = document.querySelectorAll("#btn");
 const square = document.createElement("div");
 
 createSketch(16);
@@ -24,15 +23,32 @@ function createSketch(size) {
         square.classList.add("square");
         square.style.width = `${400 / size}px`;
         square.style.height = `${400 / size}px`;
+        square.style.opacity = "1";
         board.appendChild(square);
     }
 }
 
 board.addEventListener("mouseover", (event) => {
-    console.log("hi")
-    let pixelColor = getComputedStyle(event.target).backgroundColor
-    let currentOpacity = getComputedStyle(event.target).opacity;
-    if ( pixelColor === "rgb(255, 255, 255)") { 
+    let squareColor = getComputedStyle(event.target).backgroundColor;
+    let squareOpacity = getComputedStyle(event.target).opacity;
+    if ( squareColor === "rgb(255, 255, 255)" && squareOpacity === "1") {
         event.target.classList.replace("square", "paintedSquare");
-    } else {}
+        event.target.style.opacity = ".1";
+    } else if (squareOpacity < 1) {
+        event.target.style.opacity = (+squareOpacity + .1);
+    }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+

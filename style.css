@@ -37,4 +37,5 @@ button {
 
 .paintedSquare {
     background-color: black;
+    opacity: 1;
 }
